@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.practice.web.screens.initiator">
+    <data>
+        <instance id="initiatorDc"
+                  class="com.company.practice.entity.Initiator"
+                  view="_local">
+            <loader/>
+        </instance>
+        <collection id="bidsDc" class="com.company.practice.entity.Bid" view="bid-view-with-initiators-and-executors">
+            <loader id="bidsDl">
+                <query>
+                    <![CDATA[select e from practice_Bid e where e.initiator = :initiator]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="initiatorDc">
+            <column width="250px">
+                <textField id="fioField" property="fio"/>
+                <textField id="departmentField" property="department"/>
+                <textField id="emailField" property="email"/>
+                <checkBox id="isEmployeeField" property="isEmployee" visible="false"/>
+                <button id="clickButton" width="400" align="TOP_CENTER"/>
+                <label id="Label"/>
+                <table id="bidsTable" height="100px" dataContainer="bidsDc" width="850px">
+                        <columns>
+                            <column id="status"/>
+                            <column id="description"/>
+                            <column id="openingDate"/>
+                            <column id="closingDate"/>
+                            <column id="executor"/>
+                            <column id="initiator" visible="false"/>
+                            <column id="isApproved"/>
+                        </columns>
+                    </table>
+            </column>
+        </form>
+        <button id="approve"/>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

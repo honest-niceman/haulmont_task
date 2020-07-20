@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.practice.web.screens.executor">
+    <data>
+        <instance id="executorDc"
+                  class="com.company.practice.entity.Executor"
+                  view="_local">
+            <loader/>
+        </instance>
+        <collection id="bidsDc" class="com.company.practice.entity.Bid"
+                    view="bid-view-with-initiators-and-executors">
+            <loader id="bidsDl">
+                <query>
+                    <![CDATA[select e from practice_Bid e where e.executor = :executor]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="executorDc">
+            <column width="250px">
+                <textField id="fioField" property="fio"/>
+                <textField id="postField" property="post"/>
+                <textField id="departmentField" property="department"/>
+            </column>
+        </form>
+        <label id="label" value="Current tasks"/>
+        <table id="bidsTable" height="100px" width="800" dataContainer="bidsDc">
+            <columns>
+                <column id="initiator"/>
+                <column id="status"/>
+                <column id="description"/>
+                <column id="openingDate"/>
+                <column id="closingDate"/>
+                <column id="executor" visible="false"/>
+            </columns>
+        </table>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

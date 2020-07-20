@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://browseCaption"
+        focusComponent="initiatorsTable"
+        messagesPack="com.company.practice.web.screens.initiator">
+    <data readOnly="true">
+        <collection id="initiatorsDc"
+                    class="com.company.practice.entity.Initiator"
+                    view="_local">
+            <loader id="initiatorsDl">
+                <query>
+                    <![CDATA[select e from practice_Initiator e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="initiatorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="initiatorsTable"
+                dataLoader="initiatorsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="initiatorsTable"
+                    dataContainer="initiatorsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="fio"/>
+                <column id="department"/>
+                <column id="email"/>
+                <column id="isEmployee" visible="false"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="initiatorsTable.create"/>
+                <button id="editBtn" action="initiatorsTable.edit"/>
+                <button id="removeBtn" action="initiatorsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

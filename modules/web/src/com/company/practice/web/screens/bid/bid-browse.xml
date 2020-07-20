@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://browseCaption"
+        focusComponent="bidsTable"
+        messagesPack="com.company.practice.web.screens.bid">
+    <data readOnly="true">
+        <collection id="bidsDc"
+                    class="com.company.practice.entity.Bid"
+                    view="bid-view-with-initiators-and-executors">
+            <loader id="bidsDl">
+                <query>
+                    <![CDATA[select e from practice_Bid e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="bidsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="bidsTable"
+                dataLoader="bidsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="bidsTable"
+                    width="100%"
+                    dataContainer="bidsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="initiator"/>
+                <column id="executor"/>
+                <column id="status"/>
+                <column id="description"/>
+                <column id="openingDate"/>
+                <column id="closingDate"/>
+                <column id="isApproved"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="bidsTable.create"/>
+                <button id="editBtn" action="bidsTable.edit"/>
+                <button id="removeBtn" action="bidsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

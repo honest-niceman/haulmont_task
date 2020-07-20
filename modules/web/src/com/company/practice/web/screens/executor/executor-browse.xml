@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://browseCaption"
+        focusComponent="executorsTable"
+        messagesPack="com.company.practice.web.screens.executor">
+    <data readOnly="true">
+        <collection id="executorsDc"
+                    class="com.company.practice.entity.Executor"
+                    view="_local">
+            <loader id="executorsDl">
+                <query>
+                    <![CDATA[select e from practice_Executor e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="executorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="executorsTable"
+                dataLoader="executorsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="executorsTable"
+                    dataContainer="executorsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="fio"/>
+                <column id="post"/>
+                <column id="department"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="executorsTable.create"/>
+                <button id="editBtn" action="executorsTable.edit"/>
+                <button id="removeBtn" action="executorsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="practice_Bid" name="bid-view-with-initiators-and-executors" extends="_local">
+        <property name="initiator" fetch="AUTO" view="_minimal">
+            <property name="fio"/>
+        </property>
+        <property name="executor" view="_minimal">
+            <property name="fio"/>
+        </property>
+    </view>
+</views>

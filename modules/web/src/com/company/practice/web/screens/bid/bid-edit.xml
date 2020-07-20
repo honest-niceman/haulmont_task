@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.practice.web.screens.bid">
+    <data>
+        <instance id="bidDc"
+                  class="com.company.practice.entity.Bid"
+                  view="bid-view-with-initiators-and-executors">
+            <loader/>
+        </instance>
+        <collection id="initiatorsDc" class="com.company.practice.entity.Initiator" view="_minimal">
+            <loader id="initiatorsLc">
+                <query>
+                    <![CDATA[select e from practice_Initiator e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="executorsDc" class="com.company.practice.entity.Executor" view="_minimal">
+            <loader id="executorsLc">
+                <query>
+                    <![CDATA[select e from practice_Executor e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="bidDc">
+            <column width="250px">
+                <lookupPickerField id="initiatorField" optionsContainer="initiatorsDc" property="initiator"/>
+                <lookupPickerField id="executorField" optionsContainer="executorsDc" property="executor"/>
+                <lookupField id="statusField" property="status" optionsEnum="com.company.practice.entity.Status"/>
+                <textArea id="descriptionField" property="description"/>
+                <dateField id="openingDateField" property="openingDate"/>
+                <dateField id="closingDateField" property="closingDate"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="save" action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

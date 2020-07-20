@@ -1,0 +1,1 @@
+drop index IDX_PRACTICE_INITIATOR_UNIQ_FIO ;

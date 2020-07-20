@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-practice" insertBefore="administration">
+        <item screen="practice_Executor.browse"/>
+        <item screen="practice_Initiator.browse"/>
+        <item screen="practice_Bid.browse"/>
+    </menu>
+</menu-config>
