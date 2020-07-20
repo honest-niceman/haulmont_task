@@ -10,9 +10,7 @@ public enum Status implements EnumClass<String> {
     underConsideration("Under Consideration"),
     onHarmonization("On Harmonization"),
     onApproval("On Approval"),
-    closed("Closed"),
-    onApproved("On Approved"),
-    denyed("Denyed");
+    closed("Closed");
 
     private String id;
 

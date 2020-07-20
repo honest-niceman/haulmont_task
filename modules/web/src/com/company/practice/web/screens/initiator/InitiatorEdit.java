@@ -42,6 +42,7 @@ public class InitiatorEdit extends StandardEditor<Initiator> {
                 isEmployeeField.setValue(true);
                 departmentField.setVisible(true);
                 approve.setVisible(true);
+                bidsTable.setVisible(true);
                 clickButton.setVisible(false);
             } else if (!getEditedEntity().getIsEmployee()) {
                 departmentField.setVisible(false);
@@ -49,13 +50,13 @@ public class InitiatorEdit extends StandardEditor<Initiator> {
                 approve.setVisible(false);
                 clickButton.setVisible(false);
                 emailField.setVisible(true);
-                bidsDl.getContainer().getItem(getEditedEntity().getId()).setIsApproved(true);
+                bidsTable.setVisible(true);
             }
         } catch (Exception e) {
             Label.setVisible(false);
             bidsTable.setVisible(false);
             isEmployeeField.setValue(true);
-            emailField.setVisible(false);
+            emailField.setVisible(true);
             approve.setVisible(false);
             clickButton.setCaption("Click if initiator is an external client");
         }
